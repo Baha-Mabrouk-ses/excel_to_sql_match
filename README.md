@@ -53,8 +53,10 @@ python classify_columns.py data.xlsx "nom,prenom,date_naissance" utilisateurs --
 
 ```
 
-<excel_file>: Path to the Excel file to be processed.
-<database_columns>: Comma-separated list of database table column names.
-<database_table>: Name of the target database table.
---output <output_file> (Optional): Path to save the generated SQL script. If omitted, the output is printed to the console
+
+-`<excel_file>: Path to the Excel file to be processed.`
+-`<database_columns>: Comma-separated list of database table column names.`
+-`<database_table>: Name of the target database table.`
+-`--output <output_file> (Optional): Path to save the generated SQL script. If omitted, the output is printed to the console`
+
 
