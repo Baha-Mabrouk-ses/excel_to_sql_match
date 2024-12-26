@@ -34,17 +34,24 @@ Install dependencies using:
 pip install pandas openpyxl sentence-transformers torch
 
 
+```
+
 ## Usage
 
 ### Command-Line Arguments
 
 The script is designed to be run from the command line using the following syntax:
 
+
 ```bash
 
 python classify_columns.py <excel_file> <database_columns> <database_table> --output <output_file>
+```
 
+```bash
 python classify_columns.py data.xlsx "nom,prenom,date_naissance" utilisateurs --output insert.sql
+
+```
 
 <excel_file>: Path to the Excel file to be processed.
 <database_columns>: Comma-separated list of database table column names.
