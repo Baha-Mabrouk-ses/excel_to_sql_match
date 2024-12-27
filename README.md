@@ -51,7 +51,7 @@ python match_to_excel.py input_excel.xlsx "db_col1,db_col2,db_col3" db_content.j
 
 
 - input_excel.xlsx: The Excel file with column headers to match.\\
--"db_col1,db_col2,db_col3": Comma-separated list of database column names.\\
--db_content.json: JSON file containing database content as a list of dictionaries. \\
---output_excel: (Optional) Path to save the output Excel file. Default is output.xlsx.\\
+- "db_col1,db_col2,db_col3": Comma-separated list of database column names.\\
+- db_content.json: JSON file containing database content as a list of dictionaries. \\
+- --output_excel: (Optional) Path to save the output Excel file. Default is output.xlsx.\\
 
