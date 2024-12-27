@@ -45,11 +45,11 @@ The script is designed to be run from the command line using the following synta
 
 ```bash
 
-python classify_columns.py <excel_file> <database_columns> <database_table> --output <output_file>
+python excel_parsing.py <excel_file> <database_columns> <database_table> --output <output_file>
 ```
 
 ```bash
-python classify_columns.py data.xlsx "nom,prenom,date_naissance" utilisateurs --output insert.sql
+python excel_parsing.py data.xlsx "nom,prenom,date_naissance" utilisateurs --output insert.sql
 
 ```
 
