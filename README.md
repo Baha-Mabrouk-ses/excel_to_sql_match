@@ -45,7 +45,7 @@ The script is designed to be run from the command line using the following synta
 
 
 ```bash
-python match_to_excel.py input_excel.xlsx "db_col1,db_col2,db_col3" db_content.json --output_excel matched_output.xlsx
+python sql_to_sxcel.py input_excel.xlsx "db_col1,db_col2,db_col3" db_content.json --output_excel matched_output.xlsx
 
 ```
 
