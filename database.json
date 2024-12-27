@@ -1,0 +1,42 @@
+[
+    {
+        "id": null,
+        "reference": "REF001",
+        "total_amount": 0,
+        "created_at": "2023-01-01",
+        "created_in": "City A",
+        "drawee": "Drawee A",
+        "drawer": "Drawer A",
+        "pay_to_the_order": "Order A",
+        "rib_drawee": "RIB001",
+        "amount_in_letters": "One Thousand",
+        "protestable": null,
+        "reserved_code": "CODE001",
+        "currency": "USD",
+        "endorser_name": "Endorser A",
+        "place_of_payment": "Place A",
+        "drawee_address": "Address A",
+        "guarantee": "Guarantee A",
+        "bar_code": "BAR001"
+    },
+    {
+        "id": null,
+        "reference": "REF002",
+        "total_amount": 0,
+        "created_at": "2023-01-02",
+        "created_in": "City B",
+        "drawee": "Drawee B",
+        "drawer": "Drawer B",
+        "pay_to_the_order": "Order B",
+        "rib_drawee": "RIB002",
+        "amount_in_letters": "Two Thousand",
+        "protestable": null,
+        "reserved_code": "CODE002",
+        "currency": "USD",
+        "endorser_name": "Endorser B",
+        "place_of_payment": "Place B",
+        "drawee_address": "Address B",
+        "guarantee": "Guarantee B",
+        "bar_code": "BAR002"
+    }
+]
