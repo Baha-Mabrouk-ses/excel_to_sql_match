@@ -14,7 +14,7 @@ def normalize_text(text):
         char for char in unicodedata.normalize('NFD', text) if unicodedata.category(char) != 'Mn'
     )
 
-def classify_and_generate_sql(excel_file, database_columns, database_table):
+def match_columns_and_output_excel(excel_file, database_columns, database_content, output_excel):
     # Normalize database column names
     database_columns = [normalize_text(col) for col in database_columns]
 
@@ -37,45 +37,40 @@ def classify_and_generate_sql(excel_file, database_columns, database_table):
         else:
             unmatched_columns.append(df.columns[i])
 
-    # Create a DataFrame for SQL insertion
-    matched_df = df[list(matches.keys())].rename(columns=matches)
-    matched_df['other_information'] = df[unmatched_columns].to_dict(orient='records')
+    # Create a DataFrame for output
+    matched_df = pd.DataFrame(database_content)[list(matches.values())]
+    matched_df.rename(columns={v: k for k, v in matches.items()}, inplace=True)
 
-    # Generate SQL insert statements
-    sql_statements = []
-    for _, row in matched_df.iterrows():
-        columns = ', '.join(row.index)
-        values = ', '.join([
-            f"'{json.dumps(value, default=str)}'"  # Use default=str to handle Timestamps
-            if isinstance(value, dict) else
-            f"'{str(value)}'"  # Convert other values to string
-            for value in row
-        ])
-        sql_statements.append(f"INSERT INTO {database_table} ({columns}) VALUES ({values});")
-
-    return "\n".join(sql_statements)
+    # Save to Excel
+    matched_df.to_excel(output_excel, index=False)
+    print(f"Matched data saved to {output_excel}")
 
 def main():
     # Set up argument parsing
-    parser = argparse.ArgumentParser(description="Generate SQL script from Excel file (French compatibility)")
+    parser = argparse.ArgumentParser(description="Match columns and output database content to Excel (French compatibility)")
     parser.add_argument("excel_file", type=str, help="Path to the Excel file")
     parser.add_argument("database_columns", type=str, help="Comma-separated list of database columns")
-    parser.add_argument("database_table", type=str, help="Name of the database table")
-    parser.add_argument("--output", type=str, default="output.sql", help="Path to save the generated SQL script (default: output.sql)")
+    parser.add_argument("database_content", type=str, help="Path to a JSON file containing database content as a list of dictionaries")
+    parser.add_argument("--output_excel", type=str, default="output.xlsx", help="Path to save the output Excel file (default: output.xlsx)")
 
     # Parse the arguments
     args = parser.parse_args()
     excel_file = args.excel_file
     database_columns = args.database_columns.split(",")
-    database_table = args.database_table
-    output_file = args.output
+    database_content_file = args.database_content
+    output_excel = args.output_excel
 
-    # Generate SQL script
+    # Load database content
     try:
-        sql_script = classify_and_generate_sql(excel_file, database_columns, database_table)
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write(sql_script)
-        print(f"SQL script generated successfully and saved to {output_file}")
+        with open(database_content_file, "r", encoding="utf-8") as f:
+            database_content = json.load(f)
+    except Exception as e:
+        print(f"Error loading database content: {str(e)}")
+        return
+
+    # Match columns and output to Excel
+    try:
+        match_columns_and_output_excel(excel_file, database_columns, database_content, output_excel)
     except Exception as e:
         print(f"Error: {str(e)}")
 

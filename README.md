@@ -43,20 +43,15 @@ pip install pandas openpyxl sentence-transformers torch
 The script is designed to be run from the command line using the following syntax:
 
 
-```bash
-
-python excel_parsing.py <excel_file> <database_columns> <database_table> --output <output_file>
-```
 
 ```bash
-python excel_parsing.py data.xlsx "nom,prenom,date_naissance" utilisateurs --output insert.sql
+python match_to_excel.py input_excel.xlsx "db_col1,db_col2,db_col3" db_content.json --output_excel matched_output.xlsx
 
 ```
 
 
--`<excel_file>: Path to the Excel file to be processed.`
--`<database_columns>: Comma-separated list of database table column names.`
--`<database_table>: Name of the target database table.`
--`--output <output_file> (Optional): Path to save the generated SQL script. If omitted, the output is printed to the console`
-
+- input_excel.xlsx: The Excel file with column headers to match.\\
+-"db_col1,db_col2,db_col3": Comma-separated list of database column names.\\
+-db_content.json: JSON file containing database content as a list of dictionaries. \\
+--output_excel: (Optional) Path to save the output Excel file. Default is output.xlsx.\\
 
